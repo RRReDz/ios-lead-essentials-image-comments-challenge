@@ -27,4 +27,15 @@ class ImageCommentsMapperTests: XCTestCase {
 			)
 		}
 	}
+
+	func test_map_deliversNoItemsOn2xxHTTPResponseWithEmptyJSONList() throws {
+		let emptyListJSON = makeItemsJSON([])
+		let samples = [200, 201, 250, 299]
+
+		try samples.forEach { code in
+			let result = try ImageCommentsMapper.map(emptyListJSON, from: HTTPURLResponse(statusCode: code))
+
+			XCTAssertEqual(result, [])
+		}
+	}
 }

@@ -4,7 +4,7 @@
 
 import Foundation
 
-public struct ImageComment {
+public struct ImageComment: Equatable {
 	private let id: UUID
 	private let message: String
 	private let createdAt: Date
