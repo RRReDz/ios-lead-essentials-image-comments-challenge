@@ -25,6 +25,24 @@ class ImageCommentsMapperTests: XCTestCase {
 		assert(forEach: samples2xx, with: emptyListJSON, toGetResult: .success([]))
 	}
 
+	func test_map_deliversItemsOn200HTTPResponseWithJSONItems() throws {
+		let item1 = try makeItem(
+			id: UUID(),
+			message: "any message",
+			createdAt: Date(timeIntervalSince1970: 1596386109000),
+			author: "any author")
+
+		let item2 = try makeItem(
+			id: UUID(),
+			message: "another message",
+			createdAt: Date(timeIntervalSince1970: 1617381309000),
+			author: "another author")
+
+		let json = makeItemsJSON([item1.json, item2.json])
+
+		assert(forEach: samples2xx, with: json, toGetResult: .success([item1.model, item2.model]))
+	}
+
 	//MARK: - Utils
 
 	private let samples2xx = [200, 201, 250, 299]
@@ -50,5 +68,20 @@ class ImageCommentsMapperTests: XCTestCase {
 				XCTFail("Expected \(expectedResult), got \(receivedResult) instead", file: file, line: line)
 			}
 		}
+	}
+
+	private func makeItem(id: UUID, message: String, createdAt: Date, author: String) throws -> (model: ImageComment, json: [String: Any]) {
+		let item = ImageComment(id: id, message: message, createdAt: createdAt, author: author)
+
+		let json: [String: Any] = [
+			"id": id.uuidString,
+			"message": message,
+			"created_at": ISO8601DateFormatter().string(from: createdAt),
+			"author": [
+				"username": author
+			]
+		]
+
+		return (item, json)
 	}
 }

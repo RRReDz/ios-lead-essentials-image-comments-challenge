@@ -42,16 +42,15 @@ public final class ImageCommentsMapper {
 	}
 
 	public static func map(_ data: Data, from response: HTTPURLResponse) throws -> [ImageComment] {
-		guard (200 ... 299).contains(response.statusCode), let _ = try? JSONDecoder().decode(Root.self, from: data) else {
+		let decoder = JSONDecoder()
+		decoder.dateDecodingStrategy = .iso8601
+		guard
+			(200 ... 299).contains(response.statusCode),
+			let root = try? decoder.decode(Root.self, from: data)
+		else {
 			throw Error.invalidData
 		}
 
-		return []
-	}
-}
-
-private extension HTTPURLResponse {
-	var isOk: Bool {
-		return true
+		return root.comments
 	}
 }
