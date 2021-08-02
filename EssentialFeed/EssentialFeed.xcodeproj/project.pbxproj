@@ -101,6 +101,9 @@
 		08EF9D29250BBC6C004539C2 /* ResourceErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF9D28250BBC6C004539C2 /* ResourceErrorView.swift */; };
 		08EFE6BD22D6384100DA417A /* FeedImageCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFE6BC22D6384100DA417A /* FeedImageCellController.swift */; };
 		08F8822D236499B200CAEE16 /* FeedCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F8822C236499B200CAEE16 /* FeedCache.swift */; };
+		73015C0826B838080097D616 /* ImageComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73015C0726B838080097D616 /* ImageComment.swift */; };
+		7356951026B834E4006DCF5C /* ImageCommentsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7356950F26B834E4006DCF5C /* ImageCommentsMapperTests.swift */; };
+		7356951226B835AC006DCF5C /* ImageCommentsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7356951126B835AC006DCF5C /* ImageCommentsMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,6 +227,9 @@
 		08EFE6BC22D6384100DA417A /* FeedImageCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageCellController.swift; sourceTree = "<group>"; };
 		08F8822C236499B200CAEE16 /* FeedCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCache.swift; sourceTree = "<group>"; };
 		08FC5AA922D5F47900148E12 /* FeedImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoader.swift; sourceTree = "<group>"; };
+		73015C0726B838080097D616 /* ImageComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageComment.swift; sourceTree = "<group>"; };
+		7356950F26B834E4006DCF5C /* ImageCommentsMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsMapperTests.swift; sourceTree = "<group>"; };
+		7356951126B835AC006DCF5C /* ImageCommentsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -432,6 +438,7 @@
 		08346CF024F93EA300A9F17C /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				73015C0726B838080097D616 /* ImageComment.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -464,6 +471,7 @@
 		08346CF824F9435500A9F17C /* API */ = {
 			isa = PBXGroup;
 			children = (
+				7356951126B835AC006DCF5C /* ImageCommentsMapper.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -471,6 +479,7 @@
 		08346CF924F9436800A9F17C /* API */ = {
 			isa = PBXGroup;
 			children = (
+				7356950F26B834E4006DCF5C /* ImageCommentsMapperTests.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1032,6 +1041,7 @@
 				08E5941522523FCC00E2D213 /* FeedCachePolicy.swift in Sources */,
 				08285AF4228BFAFF000A8987 /* FeedStore.xcdatamodeld in Sources */,
 				08604505233E316F005ECD22 /* CoreDataFeedStore+FeedStore.swift in Sources */,
+				73015C0826B838080097D616 /* ImageComment.swift in Sources */,
 				0886893A221DAA34007BC3E7 /* LocalFeedImage.swift in Sources */,
 				087148B9232BEBD800D6BE1A /* FeedViewModel.swift in Sources */,
 				089C40DE22170F2300DE552E /* FeedStore.swift in Sources */,
@@ -1039,6 +1049,7 @@
 				08EF9D1A250BB15C004539C2 /* LoadResourcePresenter.swift in Sources */,
 				08C0880C21E4EED600ACFB30 /* HTTPClient.swift in Sources */,
 				080F9A372531DDC600EAD475 /* FeedEndpoint.swift in Sources */,
+				7356951226B835AC006DCF5C /* ImageCommentsMapper.swift in Sources */,
 				080EDF0C21B6DAE800813479 /* FeedImage.swift in Sources */,
 				0804862E236345A40087ED48 /* FeedImageDataCache.swift in Sources */,
 				08C4E988233E13CC00D939F8 /* FeedImageDataStore.swift in Sources */,
@@ -1075,6 +1086,7 @@
 				087148BE232BEDFD00D6BE1A /* FeedLocalizationTests.swift in Sources */,
 				082DB86421F763F900A71F69 /* URLSessionHTTPClientTests.swift in Sources */,
 				08C4E984233E037200D939F8 /* LoadFeedImageDataFromCacheUseCaseTests.swift in Sources */,
+				7356951026B834E4006DCF5C /* ImageCommentsMapperTests.swift in Sources */,
 				086BE4842232725E004CDC26 /* FeedStoreSpy.swift in Sources */,
 				081C0DB322491EEF00AC754E /* SharedTestHelpers.swift in Sources */,
 				089C40D42216C37400DE552E /* CacheFeedUseCaseTests.swift in Sources */,
