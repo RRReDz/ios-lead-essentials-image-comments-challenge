@@ -10,4 +10,8 @@ public class ImageCommentsPresenter {
 		tableName: "ImageComments",
 		bundle: Bundle(for: ImageCommentsPresenter.self),
 		comment: "Title for the image comments view")
+
+	public static func map(_ comments: [ImageComment]) -> ImageCommentsViewModel {
+		ImageCommentsViewModel(comments: comments)
+	}
 }

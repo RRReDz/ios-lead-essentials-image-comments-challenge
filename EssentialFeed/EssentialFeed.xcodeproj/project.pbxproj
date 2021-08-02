@@ -107,6 +107,7 @@
 		7356951026B834E4006DCF5C /* ImageCommentsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7356950F26B834E4006DCF5C /* ImageCommentsMapperTests.swift */; };
 		7356951226B835AC006DCF5C /* ImageCommentsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7356951126B835AC006DCF5C /* ImageCommentsMapper.swift */; };
 		73EBDA9D26B897A000A4D597 /* ImageCommentsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734ECECF26B8937C002B7BDE /* ImageCommentsPresenter.swift */; };
+		73EBDA9F26B89B2000A4D597 /* ImageCommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EBDA9E26B89B2000A4D597 /* ImageCommentsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -238,6 +239,7 @@
 		734ECEDC26B8962D002B7BDE /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/ImageComments.strings"; sourceTree = "<group>"; };
 		7356950F26B834E4006DCF5C /* ImageCommentsMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsMapperTests.swift; sourceTree = "<group>"; };
 		7356951126B835AC006DCF5C /* ImageCommentsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsMapper.swift; sourceTree = "<group>"; };
+		73EBDA9E26B89B2000A4D597 /* ImageCommentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -777,6 +779,7 @@
 			children = (
 				734ECECF26B8937C002B7BDE /* ImageCommentsPresenter.swift */,
 				734ECEDA26B89625002B7BDE /* ImageComments.strings */,
+				73EBDA9E26B89B2000A4D597 /* ImageCommentsViewModel.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -1044,6 +1047,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73EBDA9F26B89B2000A4D597 /* ImageCommentsViewModel.swift in Sources */,
 				08C4E986233E139400D939F8 /* LocalFeedImageDataLoader.swift in Sources */,
 				08285AFB228C17B8000A8987 /* CoreDataHelpers.swift in Sources */,
 				08C0880E21E4EF2900ACFB30 /* FeedItemsMapper.swift in Sources */,
