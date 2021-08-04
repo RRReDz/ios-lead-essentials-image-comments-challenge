@@ -40,6 +40,8 @@
 		734C2E6F26BB06130046402C /* CommentsUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C2E6E26BB06130046402C /* CommentsUIComposer.swift */; };
 		734C2E7126BB082F0046402C /* ImageCommentsUIIntegrationTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C2E7026BB082F0046402C /* ImageCommentsUIIntegrationTests+LoaderSpy.swift */; };
 		73C7097326BB1C4A001614CD /* ImageCommentsViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C7097226BB1C4A001614CD /* ImageCommentsViewAdapter.swift */; };
+		73C7097526BB21A4001614CD /* ImageCommentsUIIntegrationTests+Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C7097426BB21A4001614CD /* ImageCommentsUIIntegrationTests+Assertions.swift */; };
+		73C7097726BB25A5001614CD /* ImageCommentCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C7097626BB25A5001614CD /* ImageCommentCell+TestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,8 @@
 		734C2E6E26BB06130046402C /* CommentsUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsUIComposer.swift; sourceTree = "<group>"; };
 		734C2E7026BB082F0046402C /* ImageCommentsUIIntegrationTests+LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageCommentsUIIntegrationTests+LoaderSpy.swift"; sourceTree = "<group>"; };
 		73C7097226BB1C4A001614CD /* ImageCommentsViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsViewAdapter.swift; sourceTree = "<group>"; };
+		73C7097426BB21A4001614CD /* ImageCommentsUIIntegrationTests+Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageCommentsUIIntegrationTests+Assertions.swift"; sourceTree = "<group>"; };
+		73C7097626BB25A5001614CD /* ImageCommentCell+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageCommentCell+TestHelpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,13 +142,15 @@
 				08367CD72486FB51009CD536 /* UIView+TestHelpers.swift */,
 				08073B51238D2E0F00A75DC6 /* ListViewController+TestHelpers.swift */,
 				08073B4E238D2E0E00A75DC6 /* FeedImageCell+TestHelpers.swift */,
+				73C7097626BB25A5001614CD /* ImageCommentCell+TestHelpers.swift */,
 				08073B4D238D2E0E00A75DC6 /* FeedUIIntegrationTests+LoaderSpy.swift */,
 				08073B52238D2E1000A75DC6 /* FeedUIIntegrationTests+Assertions.swift */,
+				734C2E7026BB082F0046402C /* ImageCommentsUIIntegrationTests+LoaderSpy.swift */,
+				73C7097426BB21A4001614CD /* ImageCommentsUIIntegrationTests+Assertions.swift */,
 				082C00032359E46C008927D3 /* XCTestCase+MemoryLeakTracking.swift */,
 				082C00052359E4C6008927D3 /* SharedTestHelpers.swift */,
 				0851CDAB239AB13100C19B1D /* HTTPClientStub.swift */,
 				0851CDAD239AB19000C19B1D /* InMemoryFeedStore.swift */,
-				734C2E7026BB082F0046402C /* ImageCommentsUIIntegrationTests+LoaderSpy.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -356,6 +362,7 @@
 				08073B57238D2E1000A75DC6 /* UIControl+TestHelpers.swift in Sources */,
 				08073B56238D2E1000A75DC6 /* FeedUIIntegrationTests+Assertions.swift in Sources */,
 				0832C9D0238D2811002314C9 /* SceneDelegateTests.swift in Sources */,
+				73C7097526BB21A4001614CD /* ImageCommentsUIIntegrationTests+Assertions.swift in Sources */,
 				08073B5B238D2E1000A75DC6 /* ListViewController+TestHelpers.swift in Sources */,
 				08073B53238D2E1000A75DC6 /* UIButton+TestHelpers.swift in Sources */,
 				0851CDAE239AB19000C19B1D /* InMemoryFeedStore.swift in Sources */,
@@ -363,6 +370,7 @@
 				0851CDAC239AB13100C19B1D /* HTTPClientStub.swift in Sources */,
 				734C2E7126BB082F0046402C /* ImageCommentsUIIntegrationTests+LoaderSpy.swift in Sources */,
 				08073B5A238D2E1000A75DC6 /* UIRefreshControl+TestHelpers.swift in Sources */,
+				73C7097726BB25A5001614CD /* ImageCommentCell+TestHelpers.swift in Sources */,
 				734C2E6D26BB04220046402C /* ImageCommentsUIIntegrationTests.swift in Sources */,
 				08073B54238D2E1000A75DC6 /* FeedImageCell+TestHelpers.swift in Sources */,
 				08367CD82486FB51009CD536 /* UIView+TestHelpers.swift in Sources */,

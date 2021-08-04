@@ -4,6 +4,7 @@
 
 import XCTest
 import EssentialApp
+import EssentialFeed
 import EssentialFeediOS
 
 class ImageCommentsUIIntegrationTests: XCTestCase {
@@ -45,6 +46,25 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once user initiated loading completes with error")
 	}
 
+	func test_loadImageCommentsCompletion_rendersSuccessfullyLoadedImageComments() {
+		let comment0 = makeImageComment(
+			message: "any message",
+			createdAt: Date(timeIntervalSince1970: 1596386109000),
+			username: "any username")
+		let comment1 = makeImageComment(
+			message: "another message",
+			createdAt: Date(timeIntervalSince1970: 1617381309000),
+			username: "another username")
+		let (sut, loader) = makeSUT()
+
+		sut.loadViewIfNeeded()
+		assertThat(sut, isRendering: [])
+
+		loader.completeImageCommentsLoading(with: [comment0, comment1], at: 0)
+		let viewModels = ImageCommentsPresenter.map([comment0, comment1]).comments
+		assertThat(sut, isRendering: viewModels)
+	}
+
 	// MARK: - Helpers
 
 	private func makeSUT(
@@ -58,5 +78,13 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		trackForMemoryLeaks(sut, file: file, line: line)
 		trackForMemoryLeaks(loader, file: file, line: line)
 		return (sut, loader)
+	}
+
+	private func makeImageComment(message: String, createdAt: Date, username: String) -> ImageComment {
+		return ImageComment(
+			id: UUID(),
+			message: message,
+			createdAt: createdAt,
+			username: username)
 	}
 }
