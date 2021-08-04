@@ -8,7 +8,7 @@ import EssentialFeed
 
 extension ImageCommentsUIIntegrationTests {
 	class LoaderSpy {
-		var loadImageCommentsCallCount: Int { commentsRequests.count }
+		var loadCommentsCallCount: Int { commentsRequests.count }
 
 		private var commentsRequests = [PassthroughSubject<[ImageComment], Error>]()
 
@@ -18,11 +18,11 @@ extension ImageCommentsUIIntegrationTests {
 			return publisher.eraseToAnyPublisher()
 		}
 
-		func completeImageCommentsLoading(with comments: [ImageComment] = [], at index: Int = 0) {
+		func completeCommentsLoading(with comments: [ImageComment] = [], at index: Int = 0) {
 			commentsRequests[index].send(comments)
 		}
 
-		func completeImageCommentsLoadingWithError(at index: Int = 0) {
+		func completeCommentsLoadingWithError(at index: Int = 0) {
 			let error = NSError(domain: "an error", code: 0)
 			commentsRequests[index].send(completion: .failure(error))
 		}

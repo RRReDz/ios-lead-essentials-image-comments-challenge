@@ -8,7 +8,7 @@ import EssentialFeed
 import EssentialFeediOS
 
 class ImageCommentsUIIntegrationTests: XCTestCase {
-	func test_imageCommentsView_hasTitle() {
+	func test_commentsView_hasTitle() {
 		let (sut, _) = makeSUT()
 
 		sut.loadViewIfNeeded()
@@ -16,59 +16,59 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		XCTAssertEqual(sut.title, commentsTitle)
 	}
 
-	func test_loadImageCommentsActions_requestImageCommentsFromLoader() {
+	func test_loadCommentsActions_requestCommentsFromLoader() {
 		let (sut, loader) = makeSUT()
-		XCTAssertEqual(loader.loadImageCommentsCallCount, 0, "Expected no loading requests before view is loaded")
+		XCTAssertEqual(loader.loadCommentsCallCount, 0, "Expected no loading requests before view is loaded")
 
 		sut.loadViewIfNeeded()
-		XCTAssertEqual(loader.loadImageCommentsCallCount, 1, "Expected a loading request once view is loaded")
+		XCTAssertEqual(loader.loadCommentsCallCount, 1, "Expected a loading request once view is loaded")
 
 		sut.simulateUserInitiatedReload()
-		XCTAssertEqual(loader.loadImageCommentsCallCount, 2, "Expected another loading request once user initiates a reload")
+		XCTAssertEqual(loader.loadCommentsCallCount, 2, "Expected another loading request once user initiates a reload")
 
 		sut.simulateUserInitiatedReload()
-		XCTAssertEqual(loader.loadImageCommentsCallCount, 3, "Expected yet another loading request once user initiates another reload")
+		XCTAssertEqual(loader.loadCommentsCallCount, 3, "Expected yet another loading request once user initiates another reload")
 	}
 
-	func test_loadingImageCommentsIndicator_isVisibleWhileLoadingImageComments() {
+	func test_loadingCommentsIndicator_isVisibleWhileLoadingComments() {
 		let (sut, loader) = makeSUT()
 
 		sut.loadViewIfNeeded()
 		XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator once view is loaded")
 
-		loader.completeImageCommentsLoading(at: 0)
+		loader.completeCommentsLoading(at: 0)
 		XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once loading completes successfully")
 
 		sut.simulateUserInitiatedReload()
 		XCTAssertTrue(sut.isShowingLoadingIndicator, "Expected loading indicator once user initiates a reload")
 
-		loader.completeImageCommentsLoadingWithError(at: 1)
+		loader.completeCommentsLoadingWithError(at: 1)
 		XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once user initiated loading completes with error")
 	}
 
-	func test_loadImageCommentsCompletion_rendersSuccessfullyLoadedImageComments() {
-		let comment0 = makeImageComment(message: "any message", username: "any username")
-		let comment1 = makeImageComment(message: "another message", username: "another username")
+	func test_loadCommentsCompletion_rendersSuccessfullyLoadedComments() {
+		let comment0 = makeComment(message: "any message", username: "any username")
+		let comment1 = makeComment(message: "another message", username: "another username")
 		let (sut, loader) = makeSUT()
 
 		sut.loadViewIfNeeded()
 		assertThat(sut, isRendering: [])
 
-		loader.completeImageCommentsLoading(with: [comment0, comment1], at: 0)
+		loader.completeCommentsLoading(with: [comment0, comment1], at: 0)
 		assertThat(sut, isRendering: [comment0, comment1])
 	}
 
-	func test_loadImageCommentsCompletion_rendersSuccessfullyLoadedEmptyCommentsAfterNonEmptyComments() {
-		let comment0 = makeImageComment(message: "any message", username: "any username")
-		let comment1 = makeImageComment(message: "another message", username: "another username")
+	func test_loadCommentsCompletion_rendersSuccessfullyLoadedEmptyCommentsAfterNonEmptyComments() {
+		let comment0 = makeComment(message: "any message", username: "any username")
+		let comment1 = makeComment(message: "another message", username: "another username")
 		let (sut, loader) = makeSUT()
 
 		sut.loadViewIfNeeded()
-		loader.completeImageCommentsLoading(with: [comment0, comment1], at: 0)
+		loader.completeCommentsLoading(with: [comment0, comment1], at: 0)
 		assertThat(sut, isRendering: [comment0, comment1])
 
 		sut.simulateUserInitiatedReload()
-		loader.completeImageCommentsLoading(with: [], at: 1)
+		loader.completeCommentsLoading(with: [], at: 1)
 		assertThat(sut, isRendering: [])
 	}
 
@@ -80,14 +80,14 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 	) -> (sut: ListViewController, loader: LoaderSpy) {
 		let loader = LoaderSpy()
 		let sut = CommentsUIComposer.commentsComposedWith(
-			imageCommentsLoader: loader.loadPublisher
+			commentsLoader: loader.loadPublisher
 		)
 		trackForMemoryLeaks(sut, file: file, line: line)
 		trackForMemoryLeaks(loader, file: file, line: line)
 		return (sut, loader)
 	}
 
-	private func makeImageComment(message: String = "any message", createdAt: Date = Date(), username: String = "any username") -> ImageComment {
+	private func makeComment(message: String = "any message", createdAt: Date = Date(), username: String = "any username") -> ImageComment {
 		return ImageComment(
 			id: UUID(),
 			message: message,

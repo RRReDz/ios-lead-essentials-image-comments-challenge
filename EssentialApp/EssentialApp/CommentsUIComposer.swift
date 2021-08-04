@@ -11,10 +11,10 @@ import EssentialFeediOS
 public class CommentsUIComposer {
 	private typealias ImageCommentsPresentationAdapter = LoadResourcePresentationAdapter<[ImageComment], ImageCommentsViewAdapter>
 
-	public static func commentsComposedWith(imageCommentsLoader: @escaping () -> AnyPublisher<[ImageComment], Error>) -> ListViewController {
+	public static func commentsComposedWith(commentsLoader: @escaping () -> AnyPublisher<[ImageComment], Error>) -> ListViewController {
 		let commentsController = makeImageCommentsViewController(title: ImageCommentsPresenter.title)
 
-		let presentationAdapter = ImageCommentsPresentationAdapter(loader: imageCommentsLoader)
+		let presentationAdapter = ImageCommentsPresentationAdapter(loader: commentsLoader)
 
 		presentationAdapter.presenter = LoadResourcePresenter(
 			resourceView: ImageCommentsViewAdapter(controller: commentsController),
