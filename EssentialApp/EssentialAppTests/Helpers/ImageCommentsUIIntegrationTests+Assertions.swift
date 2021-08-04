@@ -7,14 +7,16 @@ import EssentialFeed
 import EssentialFeediOS
 
 extension ImageCommentsUIIntegrationTests {
-	func assertThat(_ sut: ListViewController, isRendering comments: [ImageCommentViewModel], file: StaticString = #filePath, line: UInt = #line) {
+	func assertThat(_ sut: ListViewController, isRendering comments: [ImageComment], file: StaticString = #filePath, line: UInt = #line) {
 		sut.view.enforceLayoutCycle()
 
 		guard sut.numberOfRenderedImageCommentViews() == comments.count else {
 			return XCTFail("Expected \(comments.count) comments, got \(sut.numberOfRenderedImageCommentViews()) instead.", file: file, line: line)
 		}
 
-		comments.enumerated().forEach { index, comment in
+		let viewModel = ImageCommentsPresenter.map(comments)
+
+		viewModel.comments.enumerated().forEach { index, comment in
 			assertThat(sut, hasViewConfiguredFor: comment, at: index, file: file, line: line)
 		}
 

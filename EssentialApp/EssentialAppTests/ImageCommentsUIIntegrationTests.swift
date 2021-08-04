@@ -47,39 +47,25 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 	}
 
 	func test_loadImageCommentsCompletion_rendersSuccessfullyLoadedImageComments() {
-		let comment0 = makeImageComment(
-			message: "any message",
-			createdAt: Date(timeIntervalSince1970: 1596386109000),
-			username: "any username")
-		let comment1 = makeImageComment(
-			message: "another message",
-			createdAt: Date(timeIntervalSince1970: 1617381309000),
-			username: "another username")
+		let comment0 = makeImageComment(message: "any message", username: "any username")
+		let comment1 = makeImageComment(message: "another message", username: "another username")
 		let (sut, loader) = makeSUT()
 
 		sut.loadViewIfNeeded()
 		assertThat(sut, isRendering: [])
 
 		loader.completeImageCommentsLoading(with: [comment0, comment1], at: 0)
-		let viewModels = ImageCommentsPresenter.map([comment0, comment1]).comments
-		assertThat(sut, isRendering: viewModels)
+		assertThat(sut, isRendering: [comment0, comment1])
 	}
 
 	func test_loadImageCommentsCompletion_rendersSuccessfullyLoadedEmptyCommentsAfterNonEmptyComments() {
-		let comment0 = makeImageComment(
-			message: "any message",
-			createdAt: Date(timeIntervalSince1970: 1596386109000),
-			username: "any username")
-		let comment1 = makeImageComment(
-			message: "another message",
-			createdAt: Date(timeIntervalSince1970: 1617381309000),
-			username: "another username")
+		let comment0 = makeImageComment(message: "any message", username: "any username")
+		let comment1 = makeImageComment(message: "another message", username: "another username")
 		let (sut, loader) = makeSUT()
 
 		sut.loadViewIfNeeded()
 		loader.completeImageCommentsLoading(with: [comment0, comment1], at: 0)
-		let viewModels = ImageCommentsPresenter.map([comment0, comment1]).comments
-		assertThat(sut, isRendering: viewModels)
+		assertThat(sut, isRendering: [comment0, comment1])
 
 		sut.simulateUserInitiatedReload()
 		loader.completeImageCommentsLoading(with: [], at: 1)
