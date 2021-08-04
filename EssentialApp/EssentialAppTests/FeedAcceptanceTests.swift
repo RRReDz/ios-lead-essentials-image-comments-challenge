@@ -35,6 +35,17 @@ class FeedAcceptanceTests: XCTestCase {
 		XCTAssertEqual(feed.numberOfRenderedFeedImageViews(), 0)
 	}
 
+	func test_onSelectImage_displaysCommentsViewWithComments() {
+		let feed = launch(httpClient: .online(response), store: .empty)
+
+		feed.simulateTapOnFeedImage(at: 0)
+		RunLoop.current.run(until: Date())
+
+		let comments = feed.navigationController?.topViewController as! ListViewController
+		XCTAssertEqual(comments.numberOfRenderedImageCommentViews(), 1)
+		XCTAssertEqual(comments.commentMessage(at: 0), makeCommentMessage())
+	}
+
 	func test_onEnteringBackground_deletesExpiredFeedCache() {
 		let store = InMemoryFeedStore.withExpiredFeedCache
 
@@ -83,6 +94,9 @@ class FeedAcceptanceTests: XCTestCase {
 		case "/essential-feed/v1/feed":
 			return makeFeedData()
 
+		case "/essential-feed/v1/image/2AB2AE66-A4B7-4A16-B374-51BBAC8DB086/comments":
+			return makeCommentsData()
+
 		default:
 			return Data()
 		}
@@ -97,5 +111,22 @@ class FeedAcceptanceTests: XCTestCase {
 			["id": "2AB2AE66-A4B7-4A16-B374-51BBAC8DB086", "image": "http://feed.com/image-1"],
 			["id": "A28F5FE3-27A7-44E9-8DF5-53742D0E4A5A", "image": "http://feed.com/image-2"]
 		]])
+	}
+
+	private func makeCommentsData() -> Data {
+		return try! JSONSerialization.data(withJSONObject: ["items": [
+			[
+				"id": UUID().uuidString,
+				"message": makeCommentMessage(),
+				"created_at": "2020-10-09T11:24:59+0000",
+				"author": [
+					"username": "Joe"
+				]
+			]
+		]])
+	}
+
+	private func makeCommentMessage() -> String {
+		return "A message as comment"
 	}
 }
