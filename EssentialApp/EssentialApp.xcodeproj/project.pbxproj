@@ -39,6 +39,7 @@
 		734C2E6D26BB04220046402C /* ImageCommentsUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C2E6C26BB04220046402C /* ImageCommentsUIIntegrationTests.swift */; };
 		734C2E6F26BB06130046402C /* CommentsUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C2E6E26BB06130046402C /* CommentsUIComposer.swift */; };
 		734C2E7126BB082F0046402C /* ImageCommentsUIIntegrationTests+LoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C2E7026BB082F0046402C /* ImageCommentsUIIntegrationTests+LoaderSpy.swift */; };
+		73C7097326BB1C4A001614CD /* ImageCommentsViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C7097226BB1C4A001614CD /* ImageCommentsViewAdapter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		734C2E6C26BB04220046402C /* ImageCommentsUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsUIIntegrationTests.swift; sourceTree = "<group>"; };
 		734C2E6E26BB06130046402C /* CommentsUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsUIComposer.swift; sourceTree = "<group>"; };
 		734C2E7026BB082F0046402C /* ImageCommentsUIIntegrationTests+LoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageCommentsUIIntegrationTests+LoaderSpy.swift"; sourceTree = "<group>"; };
+		73C7097226BB1C4A001614CD /* ImageCommentsViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsViewAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 				08073B40238D2DF900A75DC6 /* WeakRefVirtualProxy.swift */,
 				08073B41238D2DF900A75DC6 /* LoadResourcePresentationAdapter.swift */,
 				08073B43238D2DFA00A75DC6 /* FeedViewAdapter.swift */,
+				73C7097226BB1C4A001614CD /* ImageCommentsViewAdapter.swift */,
 				0895DA8F234B3B970031BB2D /* Assets.xcassets */,
 				0895DA91234B3B970031BB2D /* LaunchScreen.storyboard */,
 				0895DA94234B3B970031BB2D /* Info.plist */,
@@ -332,6 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73C7097326BB1C4A001614CD /* ImageCommentsViewAdapter.swift in Sources */,
 				08073B44238D2DFA00A75DC6 /* FeedUIComposer.swift in Sources */,
 				0895DA87234B3B950031BB2D /* AppDelegate.swift in Sources */,
 				08073B45238D2DFA00A75DC6 /* LoadResourcePresentationAdapter.swift in Sources */,

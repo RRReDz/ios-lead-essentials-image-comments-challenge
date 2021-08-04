@@ -3,6 +3,7 @@
 //
 
 import Combine
+import Foundation
 import EssentialFeed
 
 extension ImageCommentsUIIntegrationTests {
@@ -15,6 +16,15 @@ extension ImageCommentsUIIntegrationTests {
 			let publisher = PassthroughSubject<[ImageComment], Error>()
 			commentsRequests.append(publisher)
 			return publisher.eraseToAnyPublisher()
+		}
+
+		func completeImageCommentsLoading(with comments: [ImageComment] = [], at index: Int = 0) {
+			commentsRequests[index].send(comments)
+		}
+
+		func completeImageCommentsLoadingWithError(at index: Int = 0) {
+			let error = NSError(domain: "an error", code: 0)
+			commentsRequests[index].send(completion: .failure(error))
 		}
 	}
 }
