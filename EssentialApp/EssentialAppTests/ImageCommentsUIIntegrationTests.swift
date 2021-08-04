@@ -65,6 +65,27 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		assertThat(sut, isRendering: viewModels)
 	}
 
+	func test_loadImageCommentsCompletion_rendersSuccessfullyLoadedEmptyCommentsAfterNonEmptyComments() {
+		let comment0 = makeImageComment(
+			message: "any message",
+			createdAt: Date(timeIntervalSince1970: 1596386109000),
+			username: "any username")
+		let comment1 = makeImageComment(
+			message: "another message",
+			createdAt: Date(timeIntervalSince1970: 1617381309000),
+			username: "another username")
+		let (sut, loader) = makeSUT()
+
+		sut.loadViewIfNeeded()
+		loader.completeImageCommentsLoading(with: [comment0, comment1], at: 0)
+		let viewModels = ImageCommentsPresenter.map([comment0, comment1]).comments
+		assertThat(sut, isRendering: viewModels)
+
+		sut.simulateUserInitiatedReload()
+		loader.completeImageCommentsLoading(with: [], at: 1)
+		assertThat(sut, isRendering: [])
+	}
+
 	// MARK: - Helpers
 
 	private func makeSUT(
@@ -80,7 +101,7 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		return (sut, loader)
 	}
 
-	private func makeImageComment(message: String, createdAt: Date, username: String) -> ImageComment {
+	private func makeImageComment(message: String = "any message", createdAt: Date = Date(), username: String = "any username") -> ImageComment {
 		return ImageComment(
 			id: UUID(),
 			message: message,
