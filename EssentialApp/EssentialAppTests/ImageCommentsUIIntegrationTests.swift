@@ -15,14 +15,32 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		XCTAssertEqual(sut.title, commentsTitle)
 	}
 
+	func test_loadImageCommentsActions_requestImageCommentsFromLoader() {
+		let (sut, loader) = makeSUT()
+		XCTAssertEqual(loader.loadImageCommentsCallCount, 0, "Expected no loading requests before view is loaded")
+
+		sut.loadViewIfNeeded()
+		XCTAssertEqual(loader.loadImageCommentsCallCount, 1, "Expected a loading request once view is loaded")
+
+		sut.simulateUserInitiatedReload()
+		XCTAssertEqual(loader.loadImageCommentsCallCount, 2, "Expected another loading request once user initiates a reload")
+
+		sut.simulateUserInitiatedReload()
+		XCTAssertEqual(loader.loadImageCommentsCallCount, 3, "Expected yet another loading request once user initiates another reload")
+	}
+
 	// MARK: - Helpers
 
 	private func makeSUT(
 		file: StaticString = #filePath,
 		line: UInt = #line
-	) -> (sut: ListViewController, loader: Any) {
-		let sut = CommentsUIComposer.commentsComposedWith()
+	) -> (sut: ListViewController, loader: LoaderSpy) {
+		let loader = LoaderSpy()
+		let sut = CommentsUIComposer.commentsComposedWith(
+			imageCommentsLoader: loader.loadPublisher
+		)
 		trackForMemoryLeaks(sut, file: file, line: line)
-		return (sut, 1)
+		trackForMemoryLeaks(loader, file: file, line: line)
+		return (sut, loader)
 	}
 }
