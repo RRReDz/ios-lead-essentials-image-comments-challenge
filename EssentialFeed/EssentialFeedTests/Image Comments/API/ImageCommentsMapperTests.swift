@@ -71,7 +71,7 @@ class ImageCommentsMapperTests: XCTestCase {
 	}
 
 	private func makeItem(id: UUID, message: String, createdAt: Date, author: String) throws -> (model: ImageComment, json: [String: Any]) {
-		let item = ImageComment(id: id, message: message, createdAt: createdAt, author: author)
+		let item = ImageComment(id: id, message: message, createdAt: createdAt, username: author)
 
 		let json: [String: Any] = [
 			"id": id.uuidString,

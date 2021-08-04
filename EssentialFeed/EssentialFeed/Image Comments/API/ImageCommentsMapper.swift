@@ -32,7 +32,7 @@ public final class ImageCommentsMapper {
 					id: $0.id,
 					message: $0.message,
 					createdAt: $0.createdAt,
-					author: $0.author.username)
+					username: $0.author.username)
 			}
 		}
 	}

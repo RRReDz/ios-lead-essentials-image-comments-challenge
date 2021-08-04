@@ -8,12 +8,12 @@ public struct ImageComment: Equatable {
 	private let id: UUID
 	private let message: String
 	private let createdAt: Date
-	private let author: String
+	private let username: String
 
-	public init(id: UUID, message: String, createdAt: Date, author: String) {
+	public init(id: UUID, message: String, createdAt: Date, username: String) {
 		self.id = id
 		self.message = message
 		self.createdAt = createdAt
-		self.author = author
+		self.username = username
 	}
 }

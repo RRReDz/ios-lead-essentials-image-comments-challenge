@@ -27,8 +27,8 @@ class ImageCommentsPresenterTests: XCTestCase {
 
 	private func uniqueImageComments() -> [ImageComment] {
 		return [
-			ImageComment(id: UUID(), message: "any message", createdAt: Date().adding(seconds: -60), author: "any author"),
-			ImageComment(id: UUID(), message: "another message", createdAt: Date().adding(days: -10), author: "any author")
+			ImageComment(id: UUID(), message: "any message", createdAt: Date().adding(seconds: -60), username: "any author"),
+			ImageComment(id: UUID(), message: "another message", createdAt: Date().adding(days: -10), username: "any author")
 		]
 	}
 }
