@@ -16,19 +16,16 @@ class ImageCommentsPresenterTests: XCTestCase {
 	}
 
 	func test_map_createsViewModel() {
-		let imageComments = uniqueImageComments()
+		let imageComments = [
+			ImageComment(id: UUID(), message: "any message", createdAt: Date().adding(minutes: -5), username: "any username"),
+			ImageComment(id: UUID(), message: "another message", createdAt: Date().adding(days: -1), username: "another username")
+		]
 
 		let viewModel = ImageCommentsPresenter.map(imageComments)
 
-		XCTAssertEqual(viewModel.comments, imageComments)
-	}
-
-	// MARK: - Helpers
-
-	private func uniqueImageComments() -> [ImageComment] {
-		return [
-			ImageComment(id: UUID(), message: "any message", createdAt: Date().adding(seconds: -60), username: "any author"),
-			ImageComment(id: UUID(), message: "another message", createdAt: Date().adding(days: -10), username: "any author")
-		]
+		XCTAssertEqual(viewModel.comments, [
+			ImageCommentViewModel(username: "any username", creation: "5 minutes ago", message: "any message"),
+			ImageCommentViewModel(username: "another username", creation: "1 day ago", message: "another message")
+		])
 	}
 }

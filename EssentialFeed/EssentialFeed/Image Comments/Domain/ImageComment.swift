@@ -5,10 +5,10 @@
 import Foundation
 
 public struct ImageComment: Equatable {
-	private let id: UUID
-	private let message: String
-	private let createdAt: Date
-	private let username: String
+	public let id: UUID
+	public let message: String
+	public let createdAt: Date
+	public let username: String
 
 	public init(id: UUID, message: String, createdAt: Date, username: String) {
 		self.id = id
