@@ -58,12 +58,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	private func showComments(for image: FeedImage) {
 		let commentsViewController = CommentsUIComposer.commentsComposedWith(
 			commentsLoader: {
-				self.makeCommentsLoader(forFeedId: image.id.uuidString)
+				self.makeCommentsLoader(forFeedId: image.id)
 			})
 		navigationController.pushViewController(commentsViewController, animated: true)
 	}
 
-	private func makeCommentsLoader(forFeedId feedId: String) -> AnyPublisher<[ImageComment], Error> {
+	private func makeCommentsLoader(forFeedId feedId: UUID) -> AnyPublisher<[ImageComment], Error> {
 		let url = ImageCommentsEndpoint.get(feedId).url(baseURL: baseURL)
 
 		return httpClient

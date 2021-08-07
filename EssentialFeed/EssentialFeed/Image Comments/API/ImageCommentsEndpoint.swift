@@ -5,7 +5,7 @@
 import Foundation
 
 public enum ImageCommentsEndpoint {
-	case get(_ feedId: String)
+	case get(_ feedId: UUID)
 
 	public func url(baseURL: URL) -> URL {
 		switch self {
