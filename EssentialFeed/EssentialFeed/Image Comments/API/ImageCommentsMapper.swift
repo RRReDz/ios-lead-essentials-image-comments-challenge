@@ -11,15 +11,8 @@ public final class ImageCommentsMapper {
 		private struct RemoteImageComment: Decodable {
 			let id: UUID
 			let message: String
-			let createdAt: Date
+			let created_at: Date
 			let author: Author
-
-			private enum CodingKeys: String, CodingKey {
-				case id
-				case message
-				case createdAt = "created_at"
-				case author
-			}
 
 			struct Author: Decodable {
 				let username: String
@@ -31,7 +24,7 @@ public final class ImageCommentsMapper {
 				ImageComment(
 					id: $0.id,
 					message: $0.message,
-					createdAt: $0.createdAt,
+					createdAt: $0.created_at,
 					username: $0.author.username)
 			}
 		}
