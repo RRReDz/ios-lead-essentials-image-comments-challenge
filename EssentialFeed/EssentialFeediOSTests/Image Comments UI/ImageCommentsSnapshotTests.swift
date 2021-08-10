@@ -35,7 +35,7 @@ class ImageCommentsSnapshotTests: XCTestCase {
 				viewModel: ImageCommentViewModel(
 					username: "A u.",
 					creation: "1 second ago",
-					message: "🤪")
+					message: "A smiley face.")
 			))
 		]
 	}
