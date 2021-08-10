@@ -8,7 +8,7 @@ import Foundation
 import EssentialFeed
 import EssentialFeediOS
 
-public class CommentsUIComposer {
+public final class CommentsUIComposer {
 	private typealias ImageCommentsPresentationAdapter = LoadResourcePresentationAdapter<[ImageComment], ImageCommentsViewAdapter>
 
 	public static func commentsComposedWith(commentsLoader: @escaping () -> AnyPublisher<[ImageComment], Error>) -> ListViewController {
