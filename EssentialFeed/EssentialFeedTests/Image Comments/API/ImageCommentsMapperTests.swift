@@ -10,19 +10,19 @@ class ImageCommentsMapperTests: XCTestCase {
 		let json = makeItemsJSON([])
 		let non2xxSamples = [199, 300, 400, 500]
 
-		assert(forEach: non2xxSamples, with: json, toGetResult: .failure(anyNSError()))
+		try assertThrows(forEach: non2xxSamples, with: json)
 	}
 
 	func test_map_throwsErrorOn2xxHTTPResponseWithInvalidJSON() throws {
 		let invalidJSON = Data("invalid json".utf8)
 
-		assert(forEach: samples2xx, with: invalidJSON, toGetResult: .failure(anyNSError()))
+		try assertThrows(forEach: samples2xx, with: invalidJSON)
 	}
 
 	func test_map_deliversNoItemsOn2xxHTTPResponseWithEmptyJSONList() throws {
 		let emptyListJSON = makeItemsJSON([])
 
-		assert(forEach: samples2xx, with: emptyListJSON, toGetResult: .success([]))
+		assert(forEach: samples2xx, with: emptyListJSON, returns: [])
 	}
 
 	func test_map_deliversItemsOn200HTTPResponseWithJSONItems() throws {
@@ -40,7 +40,7 @@ class ImageCommentsMapperTests: XCTestCase {
 
 		let json = makeItemsJSON([item1.json, item2.json])
 
-		assert(forEach: samples2xx, with: json, toGetResult: .success([item1.model, item2.model]))
+		assert(forEach: samples2xx, with: json, returns: [item1.model, item2.model])
 	}
 
 	//MARK: - Utils
@@ -50,23 +50,28 @@ class ImageCommentsMapperTests: XCTestCase {
 	private func assert(
 		forEach statusCodes: [Int],
 		with data: Data,
-		toGetResult expectedResult: Result<[ImageComment], Error>,
+		returns expectedComments: [ImageComment],
 		file: StaticString = #filePath,
 		line: UInt = #line
 	) {
 		statusCodes.forEach { code in
-			let receivedResult = Result<[ImageComment], Error> {
-				try ImageCommentsMapper.map(data, from: HTTPURLResponse(statusCode: code))
+			do {
+				let receivedComments = try ImageCommentsMapper.map(data, from: HTTPURLResponse(statusCode: code))
+				XCTAssertEqual(expectedComments, receivedComments, "map for code \(code) and data \(data)", file: file, line: line)
+			} catch {
+				XCTFail("map for code \(code) and data \(data). Expected \(expectedComments), got an exception \(error) instead.", file: file, line: line)
 			}
+		}
+	}
 
-			switch (expectedResult, receivedResult) {
-			case (.failure, .failure):
-				break
-			case (let .success(expectedComments), let .success(receivedComments)):
-				XCTAssertEqual(expectedComments, receivedComments, file: file, line: line)
-			default:
-				XCTFail("Expected \(expectedResult), got \(receivedResult) instead", file: file, line: line)
-			}
+	private func assertThrows(
+		forEach statusCodes: [Int],
+		with data: Data,
+		file: StaticString = #filePath,
+		line: UInt = #line
+	) throws {
+		try statusCodes.forEach { code in
+			XCTAssertThrowsError(try ImageCommentsMapper.map(data, from: HTTPURLResponse(statusCode: code)), "map for code \(code) and data \(data).", file: file, line: line)
 		}
 	}
 
